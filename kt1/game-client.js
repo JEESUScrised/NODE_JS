@@ -1,6 +1,5 @@
 const { Request } = require('zeromq');
 
-// получаем аргументы из командной строки
 const args = process.argv.slice(2);
 
 if (args.length !== 2) {
@@ -17,32 +16,23 @@ if (isNaN(min) || isNaN(max) || min >= max) {
     process.exit(1);
 }
 
-// загадываем число
 const secretNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 console.log(`Загадано число в диапазоне ${min}-${max}: ${secretNumber}`);
 
-// для отладки 
-// console.log('DEBUG: секретное число =', secretNumber);
-
-// основная функция игры
 async function playGame() {
-    // создаем сокет для запросов
     const requester = new Request();
 
-    // подключаемся к серверу
     await requester.connect('tcp://localhost:5555');
 
     let gameOver = false;
-    let round = 0; // счетчик раундов
+    let round = 0;
 
     try {
-        // отправляем диапазон серверу
         console.log('Отправляем диапазон серверу...');
         await requester.send(JSON.stringify({ range: `${min}-${max}` }));
         
         console.log('Ожидаем ответов от сервера...');
         
-        // основной цикл игры
         while (!gameOver) {
             round++;
             const [reply] = await requester.receive();
@@ -76,18 +66,15 @@ async function playGame() {
         
     } catch (error) {
         console.error('Ошибка при игре:', error);
-        // можно добавить retry логику, но пока так
     } finally {
         await requester.close();
         process.exit(0);
     }
 }
 
-// обработка ctrl+c
 process.on('SIGINT', async function() {
     console.log('\nЗавершение игры...');
     process.exit();
 });
 
-// запускаем игру
 playGame().catch(console.error);

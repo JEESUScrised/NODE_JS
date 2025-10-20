@@ -1,0 +1,16 @@
+{
+  "name": "kt1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0",
+  "description": "",
+  "dependencies": {
+    "zeromq": "^6.5.0"
+  }
+}

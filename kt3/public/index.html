@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Чат</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Модальное окно регистрации -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>Добро пожаловать в чат!</h2>
+            <p>Пожалуйста, представьтесь:</p>
+            <input type="text" id="userNameInput" placeholder="Введите ваше имя" maxlength="20">
+            <label for="userColorInput">Выберите цвет для ваших сообщений:</label>
+            <input type="color" id="userColorInput" value="#4ECDC4">
+            <button id="registerBtn">Войти в чат</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>Участники чата</h3>
+            <div id="userList" class="user-list"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="chat-header">
+                <h1>WebSocket Чат</h1>
+                <div id="connectionStatus" class="status disconnected">Отключено</div>
+            </div>
+
+            <div id="messages" class="messages"></div>
+
+            <div class="input-area">
+                <div class="message-controls">
+                    <select id="targetUserSelect" class="target-select">
+                        <option value="">Всем</option>
+                    </select>
+                    <span id="targetIndicator" class="target-indicator"></span>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="messageInput" placeholder="Введите сообщение..." disabled>
+                    <button id="sendBtn" disabled>Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
+

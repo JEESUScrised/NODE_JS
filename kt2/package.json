@@ -1,0 +1,20 @@
+{
+  "name": "vedomosti-news-service",
+  "version": "1.0.0",
+  "description": "HTTP сервис для чтения новостей Ведомости",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["news", "rss", "vedomosti"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "axios": "^1.6.0"
+  }
+}
+
